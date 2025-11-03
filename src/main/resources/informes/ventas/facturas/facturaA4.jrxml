@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturaA4" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50" uuid="d5a7abda-7e2e-4c49-95ce-1f36cfb1225e">
+    <parameter name="DOCUMENT_UID" class="java.lang.String"/>
+    <parameter name="TICKET_CODE" class="java.lang.String"/>
+    <parameter name="CUSTOMER_NAME" class="java.lang.String"/>
+    <parameter name="TOTAL_AMOUNT" class="java.math.BigDecimal"/>
+    <title>
+        <band height="90">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="24" uuid="5d79a26f-84b5-4f02-b502-1c2cc74fd07e"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Factura de venta]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="36" width="515" height="20" uuid="fe096e65-0971-4b69-9b61-dd7d98e0355f"/>
+                <textFieldExpression><![CDATA["Documento: " + $P{DOCUMENT_UID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="56" width="515" height="20" uuid="2643fb4f-648b-4b3b-8db1-6ba5fa3ca0de"/>
+                <textFieldExpression><![CDATA["Ticket: " + $P{TICKET_CODE}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="515" height="20" uuid="1e2aac1b-3c38-4f25-88ad-72ae93c92540"/>
+                <textFieldExpression><![CDATA["Cliente: " + $P{CUSTOMER_NAME}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <summary>
+        <band height="50">
+            <textField pattern="###,##0.00">
+                <reportElement x="0" y="10" width="515" height="20" uuid="6f91a751-8181-4bb4-aa0d-e4a2e59954d0"/>
+                <textFieldExpression><![CDATA[$P{TOTAL_AMOUNT} == null ? "" : "Importe total: " + $P{TOTAL_AMOUNT}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+</jasperReport>
